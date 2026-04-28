@@ -2,7 +2,10 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 COPY . .
-RUN dotnet restore
+
+
+RUN dotnet restore Microservicio.atracciones.Api/Microservicio.atracciones.Api.csproj
+
 RUN dotnet publish Microservicio.atracciones.Api/Microservicio.atracciones.Api.csproj -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
