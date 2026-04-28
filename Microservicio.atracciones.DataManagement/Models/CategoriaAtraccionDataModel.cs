@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Microservicio.atracciones.DataManagement.Models;
+
+public class CategoriaAtraccionDataModel
+{
+    public int AtId { get; set; }
+    public int CatId { get; set; }
+    public string? CategoriaNombre { get; set; }
+}

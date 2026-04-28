@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Microservicio.atracciones.Business.DTOs.Horario;
+
+public class CrearHorarioRequest
+{
+    public int TicketId { get; set; }
+    public DateOnly Fecha { get; set; }
+    public TimeOnly HoraInicio { get; set; }
+    public TimeOnly HoraFin { get; set; }
+    public int CuposDisponibles { get; set; }
+}
