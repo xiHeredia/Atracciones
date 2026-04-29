@@ -11,6 +11,7 @@ namespace Microservicio.atracciones.DataAccess.Repositories.Interfaces;
 public interface IClienteRepository
 {
     Task<ClienteEntity?> ObtenerPorIdAsync(int id, CancellationToken cancellationToken = default);
+    Task<ClienteEntity?> ObtenerPorUsuarioIdAsync(int usuarioId, CancellationToken cancellationToken = default);
     Task<ClienteEntity?> ObtenerParaActualizarAsync(int id, CancellationToken cancellationToken = default);
     Task<IReadOnlyList<ClienteEntity>> ListarAsync(CancellationToken cancellationToken = default);
     Task AgregarAsync(ClienteEntity entity, CancellationToken cancellationToken = default);
