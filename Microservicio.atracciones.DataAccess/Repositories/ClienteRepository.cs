@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +26,14 @@ public class ClienteRepository : IClienteRepository
             .AsNoTracking()
             .Include(x => x.Usuario)
             .FirstOrDefaultAsync(x => x.CliId == id && x.CliEstado == "A", cancellationToken);
+    }
+
+    public async Task<ClienteEntity?> ObtenerPorUsuarioIdAsync(int usuarioId, CancellationToken cancellationToken = default)
+    {
+        return await _context.Clientes
+            .AsNoTracking()
+            .Include(x => x.Usuario)
+            .FirstOrDefaultAsync(x => x.UsuId == usuarioId && x.CliEstado == "A", cancellationToken);
     }
 
     public async Task<ClienteEntity?> ObtenerParaActualizarAsync(int id, CancellationToken cancellationToken = default)
