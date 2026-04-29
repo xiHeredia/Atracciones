@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +23,12 @@ public class ClienteDataService : IClienteDataService
     public async Task<ClienteDataModel?> ObtenerPorIdAsync(int id, CancellationToken cancellationToken = default)
     {
         var entity = await _unitOfWork.ClienteRepository.ObtenerPorIdAsync(id, cancellationToken);
+        return entity is null ? null : ClienteDataMapper.ToModel(entity);
+    }
+
+    public async Task<ClienteDataModel?> ObtenerPorUsuarioIdAsync(int usuarioId, CancellationToken cancellationToken = default)
+    {
+        var entity = await _unitOfWork.ClienteRepository.ObtenerPorUsuarioIdAsync(usuarioId, cancellationToken);
         return entity is null ? null : ClienteDataMapper.ToModel(entity);
     }
 
