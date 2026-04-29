@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,6 +38,7 @@ public class AuthService : IAuthService
 
         return new LoginResponse
         {
+            UsuarioId = usuario.UsuId,
             UserName = usuario.UsuLogin,
             Roles = usuario.UsuarioRoles
                 .Select(x => x.Rol.RolDescripcion)
