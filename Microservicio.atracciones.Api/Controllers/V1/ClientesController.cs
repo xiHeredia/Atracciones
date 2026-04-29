@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microservicio.atracciones.Api.Models.Common;
 using Microservicio.atracciones.Business.DTOs.Cliente;
@@ -24,6 +24,17 @@ public class ClientesController : ControllerBase
     {
         var result = await _clienteService.ListarAsync(cancellationToken);
         return Ok(ApiResponse<IReadOnlyList<ClienteResponse>>.Ok(result, "Consulta exitosa."));
+    }
+
+    [HttpGet("usuario/{usuarioId:int}")]
+    [ProducesResponseType(typeof(ApiResponse<ClienteResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> ObtenerPorUsuario(int usuarioId, CancellationToken cancellationToken)
+    {
+        var result = await _clienteService.ObtenerPorUsuarioIdAsync(usuarioId, cancellationToken);
+        if (result is null)
+            return NotFound(new { message = "No se encontró un cliente vinculado a este usuario." });
+        return Ok(ApiResponse<ClienteResponse>.Ok(result, "Consulta exitosa."));
     }
 
     [HttpGet("{id:int}")]
