@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +30,12 @@ public class ClienteService : IClienteService
             throw new NotFoundException("No se encontró el cliente.");
 
         return ClienteBusinessMapper.ToResponse(cliente);
+    }
+
+    public async Task<ClienteResponse?> ObtenerPorUsuarioIdAsync(int usuarioId, CancellationToken cancellationToken = default)
+    {
+        var cliente = await _clienteDataService.ObtenerPorUsuarioIdAsync(usuarioId, cancellationToken);
+        return cliente is null ? null : ClienteBusinessMapper.ToResponse(cliente);
     }
 
     public async Task<IReadOnlyList<ClienteResponse>> ListarAsync(CancellationToken cancellationToken = default)
