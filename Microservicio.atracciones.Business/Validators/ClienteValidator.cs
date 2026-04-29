@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +22,8 @@ public static class ClienteValidator
 
         if (string.IsNullOrWhiteSpace(request.NumeroIdentificacion))
             errors.Add("El número de identificación es obligatorio.");
+        else if (!System.Text.RegularExpressions.Regex.IsMatch(request.NumeroIdentificacion.Trim(), @"^\d+$"))
+            errors.Add("El número de identificación debe contener solo dígitos.");
 
         if (string.IsNullOrWhiteSpace(request.Nombres))
             errors.Add("Los nombres son obligatorios.");
@@ -31,6 +33,10 @@ public static class ClienteValidator
 
         if (string.IsNullOrWhiteSpace(request.Correo))
             errors.Add("El correo es obligatorio.");
+
+        if (!string.IsNullOrWhiteSpace(request.Telefono) &&
+            !System.Text.RegularExpressions.Regex.IsMatch(request.Telefono.Trim(), @"^\d+$"))
+            errors.Add("El teléfono debe contener solo dígitos.");
 
         return errors;
     }
@@ -50,6 +56,8 @@ public static class ClienteValidator
 
         if (string.IsNullOrWhiteSpace(request.NumeroIdentificacion))
             errors.Add("El número de identificación es obligatorio.");
+        else if (!System.Text.RegularExpressions.Regex.IsMatch(request.NumeroIdentificacion.Trim(), @"^\d+$"))
+            errors.Add("El número de identificación debe contener solo dígitos.");
 
         if (string.IsNullOrWhiteSpace(request.Nombres))
             errors.Add("Los nombres son obligatorios.");
@@ -59,6 +67,10 @@ public static class ClienteValidator
 
         if (string.IsNullOrWhiteSpace(request.Correo))
             errors.Add("El correo es obligatorio.");
+
+        if (!string.IsNullOrWhiteSpace(request.Telefono) &&
+            !System.Text.RegularExpressions.Regex.IsMatch(request.Telefono.Trim(), @"^\d+$"))
+            errors.Add("El teléfono debe contener solo dígitos.");
 
         return errors;
     }
