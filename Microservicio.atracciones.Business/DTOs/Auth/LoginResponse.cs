@@ -6,6 +6,7 @@ namespace Microservicio.atracciones.Business.DTOs.Auth;
 
 public class LoginResponse
 {
+    public int UsuarioId { get; set; }
     public string UserName { get; set; } = null!;
     public IReadOnlyCollection<string> Roles { get; set; } = Array.Empty<string>();
     public string? Token { get; set; }
